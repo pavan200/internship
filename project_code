@@ -1,28 +1,43 @@
-
-
+#include <stdio.h>
 int main()
 {
-    int arr[5][2] = {{0,2},{0,1},{1,3},{1,4},{3,4}};
-    int source; //source
-    int dest; //destination
-    int count;  //;length of nodes linked to current nodes
-    int range = 5;//no of nodes.. starts from 1 ends at 5
-    int nodes[range][range-1];
-    for(int i=0;i<sizeof(arr);i++){
-        source = arr[i][0];
-        dest = arr[i][1];
-        count = sizeof(nodes[source]);
-        printf("\n next is %d",count);
-        nodes[source][count] = dest;
-    }
-    printf("size is %lu",sizeof(nodes));
-    for(int i=0;i<sizeof(nodes);i++){
-        for(int j=0;j<sizeof(nodes[i]);j++){
-            printf(" value %d\n",nodes[i][j]);
-        }
-    }
-    if (sizeof(nodes)==1){
-      
-    }
-    return 0;
+ int arr[5][2] = {{0, 2}, {0, 1}, {1, 3}, {1, 4}, {3, 4}};
+ int source; 
+ int dest; 
+ int count; 
+ int range = 5; 
+ int nodes[range + 1][range - 1];
+ int lens[range];
+
+ for (int i = 0; i < range; i++)
+ {
+  lens[i] = 0;
+ }
+ for (int i = 0; i< range; i++)
+ {
+  source = arr[i][0];
+  dest = arr[i][1];
+  count = lens[source];
+  lens[source] = lens[source] + 1;
+  nodes[source][count] = dest;
+
+  count = lens[dest];
+  lens[dest] = lens[dest] + 1;
+  nodes[dest][count] = source;
+ }
+
+
+ for(int i=0;i<range;i++){
+  for (int j = 0; j < lens[i]; j++)
+  {
+   printf("number is %d %d %d\n", i, j, nodes[i][j]);
+  } 
+ }
+  for(int i=0;i<range;i++){
+    if (len[i]==1){
+        prinf("%d %d",i,nodes[i][0]);
+        
+ 
+ 
+ return 0;
 }
